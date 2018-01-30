@@ -1,0 +1,15 @@
+html { font-family: sans-serif; }
+.kalendar { width: 600px; margin: 3rem auto;}
+.kalendar table { border-collapse: collapse; width: 100%; }
+.kalendar table td, .kalendar table th { padding: .5rem; text-align: center; }
+.kalendar table thead { background-color: #b39ddb; }
+.kalendar table > thead > tr:first-child > th > * { display: inline-block; }
+.kalendar table > thead > tr:first-child > th > h2 { margin: 0 2rem; }
+.kalendar table > thead > tr:first-child > th > button { line-height: 28px; cursor: pointer; }
+.kalendar table > tbody > tr:hover > td  { background-color: #b39ddb; }
+.kalendar table > tbody > tr > td:hover  { background-color: #ab47bc;  cursor: pointer; }
+.previous-month { background-color: #f3e5f5; }
+.current-month { background-color: #5e35b1; color: #FFFFFF; }
+.current-month.current-day { background-color: #d81b60 !important; }
+.next-month { background-color: #e8eaf6; }
+.date-info { width: 33%; display: inline-block; text-align: center;}
