@@ -14,6 +14,7 @@ class Kalendar {
         let table = document.createElement('table')
         table.appendChild(this.renderCalendarHead())
         table.appendChild(this.renderCalendarBody())
+        table.appendChild(this.renderCalendarFooter())
         this.element.appendChild(table)   
         this.initiateControls()
     }
@@ -48,8 +49,7 @@ class Kalendar {
         let dayCounter = 1
         let nextMonthCounter = 1
         let calendarRows = Math.ceil((monthDays + monthStarts) / 7)
-        let dataDate = ""
-        let year, month
+        let dataDate, year, month
         for(let i = 0; i < calendarRows; i++) {
             let tr = document.createElement('tr')
             for(let j = 0; j < 7; j++){
@@ -77,6 +77,11 @@ class Kalendar {
         }
         return tbody
     }   
+    renderCalendarFooter() {
+        let tfoot = document.createElement('tfoot')
+        tfoot.innerHTML = `<tr><td colspan="7" class="date-preview"></td></tr>`
+        return tfoot
+    }
     initiateControls() {
         let prev = document.querySelector('.prev')
         let next = document.querySelector('.next')
@@ -91,20 +96,13 @@ class Kalendar {
             this.calendar(this.element) 
         })    
         let cells = document.querySelectorAll('.kalendar tbody td')
+        let datePreview = this.element.querySelector('tfoot td.date-preview')
         for(let cell of cells) {
             cell.addEventListener('click', (e) => {
                 let date = new Date(e.target.dataset.date);
-                let card = `<div class="date-info">
-                              <h4>${date.getDate()}. ${this.monthNames[date.getMonth()]} ${date.getFullYear()}</h4>
-                              <p>Tento den je ${this.dayNames[date.getDay()]}.</p>
-                            </div>`
-                let cards = document.getElementsByClassName('date-info')
-                if(cards.length >= 3) {
-                    for(let c of cards) {
-                        c.remove()
-                    }
-                }
-                this.element.insertAdjacentHTML('beforeend', card)
+                let card = `<h4>${date.getDate()}. ${this.monthNames[date.getMonth()]} ${date.getFullYear()}</h4>
+                              <p>Tento den je ${this.dayNames[date.getDay()]}.</p>`              
+                datePreview.innerHTML = card
             })
         }
     }
